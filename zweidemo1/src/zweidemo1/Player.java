@@ -27,8 +27,8 @@ public class Player {
 	}
 	
 	void move(int x, int y) {
-		this.posx += 16*x;
-		this.posy += 16*y;
+		this.posx += x;
+		this.posy += y;
 	}
 	
 }
