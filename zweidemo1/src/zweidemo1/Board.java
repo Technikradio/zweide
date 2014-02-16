@@ -1,34 +1,70 @@
 package zweidemo1;
 
-public class Board {
-	final int HEIGHT, WIDTH, FIELD_SIZE = 16;
-	boolean[] validField;
+import java.awt.GridLayout;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class Board extends JPanel {
+	final int HEIGHT, WIDTH, FLOOR_SIZE = 16;
+	boolean[][] validfloor;
+	ImageIcon rockimage, floorimage;
 
 	Board(int width, int height) {
 		WIDTH = width;
 		HEIGHT = height;
-		validField = new boolean[HEIGHT * WIDTH];
+		validfloor = new boolean[WIDTH][HEIGHT];
+		this.setLayout(new GridLayout(WIDTH, HEIGHT));
 		makeRandom();
+		getResources();
+		draw();
+	}
+
+	private void getResources() {
+		floorimage = new ImageIcon( "floor.png" );
+		rockimage = new ImageIcon( "rock.png" );
+	}
+
+	private void draw() {
+		for (int i = 0; i < WIDTH; i++) {
+			for (int j = 0; j < HEIGHT; j++) {
+				if (validfloor[i][j]) {
+					this.add(new JLabel(floorimage));
+				} else {
+					this.add(new JLabel(rockimage));
+				}
+			}
+		}
 	}
 
 	void makeRandom() {
-		for (int i = 0; i < validField.length; i++) {
-			if (Math.random() < 0.2)
-				validField[i] = false;
-			else
-				validField[i] = true;
+		for (int i = 0; i < validfloor.length; i++) {
+			for (int j = 0; j < validfloor[i].length; j++) {
+				if (Math.random() < 0.2)
+					validfloor[i][j] = false;
+				else
+					validfloor[i][j] = true;
+			}
 		}
-		printFieldToConsole(validField);
+		printfloorToConsole(validfloor);
 	}
 
-	private void printFieldToConsole(boolean[] field) {
-		for (int i = 0; i < field.length; i++) {
-			if (field[i])
-				System.out.print(".");
-			else
-				System.out.print("#");
-			if (i % WIDTH == WIDTH - 1)
-				System.out.println();
+	public int coordinatesToIndex(int x, int y) {
+		return x * WIDTH + y;
+	}
+
+	private void printfloorToConsole(boolean[][] floor) {
+		for (int i = 0; i < floor.length; i++) {
+			for (int j = 0; j < floor[i].length; j++) {
+				if (floor[i][j])
+					System.out.print(".");
+				else
+					System.out.print("#");
+			}
+			System.out.println();
 		}
 	}
+
 }
