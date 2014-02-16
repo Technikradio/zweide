@@ -7,5 +7,11 @@ public class Rendering extends JFrame{
 		setTitle(Properties.name);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(Properties.resulotionW, Properties.resulotionH);
+		setResizable(Properties.resizable);
+		
+	}
+	
+	public static void main(String[] args){
+		new Rendering();
 	}
 }
