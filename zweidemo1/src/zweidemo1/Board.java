@@ -1,7 +1,7 @@
 package zweidemo1;
 
+import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -19,15 +19,11 @@ public class Board extends JPanel {
 		this.setLayout(new GridLayout(WIDTH, HEIGHT));
 		makeRandom();
 		getResources();
-		draw();
+		repaint();
 	}
-
-	private void getResources() {
-		floorimage = new ImageIcon( "floor.png" );
-		rockimage = new ImageIcon( "rock.png" );
-	}
-
-	private void draw() {
+	
+	@Override
+	protected void paintComponent(Graphics g) {
 		for (int i = 0; i < WIDTH; i++) {
 			for (int j = 0; j < HEIGHT; j++) {
 				if (validfloor[i][j]) {
@@ -37,6 +33,11 @@ public class Board extends JPanel {
 				}
 			}
 		}
+	}
+
+	private void getResources() {
+		floorimage = new ImageIcon( "floor.png" );
+		rockimage = new ImageIcon( "rock.png" );
 	}
 
 	void makeRandom() {

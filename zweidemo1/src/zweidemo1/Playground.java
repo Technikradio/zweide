@@ -5,14 +5,14 @@ import javax.swing.JFrame;
 public class Playground extends JFrame {
 	
 	public static void main(String[] args) {
-		Playground frame = new Playground(32, 32);
+		Playground frame = new Playground();
+		Board feld = new Board(5, 5);
+		frame.add(feld);
+		frame.setBounds(100, 50, feld.WIDTH * feld.FLOOR_SIZE, feld.HEIGHT * feld.FLOOR_SIZE);
 	}
 
-	Playground(int width, int height) {
-		Board feld = new Board(width, height);
-		this.add(feld);
-		this.setResizable(false);
-		this.setBounds(100, 50, feld.WIDTH * feld.FLOOR_SIZE, feld.HEIGHT * feld.FLOOR_SIZE);
+	Playground() {
+		this.setResizable(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
