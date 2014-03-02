@@ -20,7 +20,7 @@ public class Board extends JPanel {
 		validfloor = new boolean[WIDTH][HEIGHT];
 		makeRandom();
 		getResources();
-		player = new Player(WIDTH/2, HEIGHT/2);
+		player = new Player(WIDTH / 2, HEIGHT / 2);
 	}
 
 	@Override
@@ -28,14 +28,14 @@ public class Board extends JPanel {
 		for (int i = 0; i < validfloor.length; i++) {
 			for (int j = 0; j < validfloor[i].length; j++) {
 				if (player.posx == i && player.posy == j) {
-					g.drawImage(playerimage.getImage(), i * IMAGE_SIZE, j * IMAGE_SIZE,
-							getParent());
+					g.drawImage(playerimage.getImage(), i * IMAGE_SIZE, j
+							* IMAGE_SIZE, getParent());
 				} else if (validfloor[i][j]) {
-					g.drawImage(floorimage.getImage(), i * IMAGE_SIZE, j * IMAGE_SIZE,
-							getParent());
+					g.drawImage(floorimage.getImage(), i * IMAGE_SIZE, j
+							* IMAGE_SIZE, getParent());
 				} else {
-					g.drawImage(rockimage.getImage(), i * IMAGE_SIZE, j * IMAGE_SIZE,
-							getParent());
+					g.drawImage(rockimage.getImage(), i * IMAGE_SIZE, j
+							* IMAGE_SIZE, getParent());
 				}
 			}
 		}

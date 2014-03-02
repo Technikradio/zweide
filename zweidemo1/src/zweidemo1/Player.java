@@ -1,7 +1,7 @@
 package zweidemo1;
 
 public class Player {
-	String name = "Player";
+	String name = "";
 	int posx = 0, posy = 0;
 
 	Player() {
@@ -26,9 +26,17 @@ public class Player {
 		this.name = name;
 	}
 
-	void move(int x, int y) {
+	boolean move(int x, int y, Board board) {
+		if (!board.validfloor[posx + x][posy + y])
+			return false;
+		if(posx + x<0||posy + y<0)
+			return false;
+		if(!(posx + x<board.WIDTH&&posy + y<board.HEIGHT))
+			return false;
 		this.posx += x;
 		this.posy += y;
+		board.repaint();
+		return true;
 	}
 
 }
