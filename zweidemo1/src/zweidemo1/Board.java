@@ -1,47 +1,51 @@
 package zweidemo1;
 
 import java.awt.Graphics;
-import java.awt.GridLayout;
 
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Board extends JPanel {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
-	final int HEIGHT, WIDTH, FLOOR_SIZE = 16;
+	final int HEIGHT, WIDTH, IMAGE_SIZE = 16;
 	boolean[][] validfloor;
-	ImageIcon rockimage, floorimage;
+	ImageIcon rockimage, floorimage, playerimage;
+	Player player;
 
 	Board(int width, int height) {
+		super();
 		WIDTH = width;
 		HEIGHT = height;
 		validfloor = new boolean[WIDTH][HEIGHT];
-		this.setLayout(new GridLayout(WIDTH, HEIGHT));
 		makeRandom();
 		getResources();
-		repaint();
+		player = new Player(WIDTH/2, HEIGHT/2);
 	}
-	
+
 	@Override
 	protected void paintComponent(Graphics g) {
-		for (int i = 0; i < WIDTH; i++) {
-			for (int j = 0; j < HEIGHT; j++) {
-				if (validfloor[i][j]) {
-					this.add(new JLabel(floorimage));
+		for (int i = 0; i < validfloor.length; i++) {
+			for (int j = 0; j < validfloor[i].length; j++) {
+				if (player.posx == i && player.posy == j) {
+					g.drawImage(playerimage.getImage(), i * IMAGE_SIZE, j * IMAGE_SIZE,
+							getParent());
+				} else if (validfloor[i][j]) {
+					g.drawImage(floorimage.getImage(), i * IMAGE_SIZE, j * IMAGE_SIZE,
+							getParent());
 				} else {
-					this.add(new JLabel(rockimage));
+					g.drawImage(rockimage.getImage(), i * IMAGE_SIZE, j * IMAGE_SIZE,
+							getParent());
 				}
 			}
 		}
+
 	}
 
 	private void getResources() {
-		floorimage = new ImageIcon( "floor.png" );
-		rockimage = new ImageIcon( "rock.png" );
+		floorimage = new ImageIcon("floor.png");
+		rockimage = new ImageIcon("rock.png");
+		playerimage = new ImageIcon("player.png");
 	}
 
 	void makeRandom() {
