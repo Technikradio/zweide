@@ -11,7 +11,7 @@ public class Playground extends JFrame {
 
 	public static void main(String[] args) {
 		Playground frame = new Playground();
-		final Board feld = new Board(32, 32);
+		final Board feld = new Board(64, 48);
 		frame.add(feld);
 		frame.setBounds(100, 50, feld.WIDTH * feld.IMAGE_SIZE + 20, feld.HEIGHT
 				* feld.IMAGE_SIZE + 40);

@@ -27,11 +27,11 @@ public class Player {
 	}
 
 	boolean move(int x, int y, Board board) {
-		if (!board.validfloor[posx + x][posy + y])
-			return false;
 		if(posx + x<0||posy + y<0)
 			return false;
 		if(!(posx + x<board.WIDTH&&posy + y<board.HEIGHT))
+			return false;
+		if (!board.validfloor[posx + x][posy + y])
 			return false;
 		this.posx += x;
 		this.posy += y;
