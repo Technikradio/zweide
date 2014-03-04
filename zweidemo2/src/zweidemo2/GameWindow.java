@@ -2,6 +2,8 @@ package zweidemo2;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
@@ -26,13 +28,48 @@ public class GameWindow extends JFrame {
 			try {
 				x=Integer.parseInt(args[0]);
 				y=Integer.parseInt(args[1]);
-			} catch(NumberFormatException e) {
-				System.err.println(e.getMessage());
+				if(x<1||y<1)
+					throw new IllegalArgumentException("Field must be at least 1 by 1");
+			} catch(IllegalArgumentException e) {
+				System.err.println("Unsupported Argument: "+e.getMessage());
+				System.exit(1);
 			}
 		}
 		GameWindow frame = new GameWindow("Use WASD or the directional keys to move!", x, y);
 		GamePanel board = new GamePanel(x, y);
+		Player player = new Player(x/2, y/2);
+		board.addPlayer(player);
 		frame.add(board);
+		addPlayerSlideListener(frame, board, player);
+	}
+
+	private static void addPlayerSlideListener(GameWindow frame, final GamePanel board, final Player player) {
+		frame.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) { }
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_UP
+						|| Character.toLowerCase(e.getKeyChar()) == 'w') {
+					player.slide(0, -1, board);
+				} else if (e.getKeyCode() == KeyEvent.VK_LEFT
+						|| Character.toLowerCase(e.getKeyChar()) == 'a') {
+					player.slide(-1, 0, board);
+				} else if (e.getKeyCode() == KeyEvent.VK_DOWN
+						|| Character.toLowerCase(e.getKeyChar()) == 's') {
+					player.slide(0, 1, board);
+				} else if (e.getKeyCode() == KeyEvent.VK_RIGHT
+						|| Character.toLowerCase(e.getKeyChar()) == 'd') {
+					player.slide(1, 0, board);
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) { }
+			
+		});
 	}
 
 }
