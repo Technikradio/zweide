@@ -18,7 +18,6 @@ public class GameWindow extends JFrame {
 		int posy = (d.height - 32 * y) / 2;
 		setLocation(posx, posy);
 		setResizable(false);
-		setVisible(true);
 	}
 
 	public static void main(String[] args) {
@@ -47,6 +46,7 @@ public class GameWindow extends JFrame {
 		frame.add(board);
 		board.repaint();
 		addPlayerSlideListener(frame, board, player);
+		frame.setVisible(true);
 	}
 
 	private static void addPlayerSlideListener(GameWindow frame,
