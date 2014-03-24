@@ -11,7 +11,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 
 @SuppressWarnings("serial")
-public class GameFrame extends JFrame implements ActionListener, KeyListener {
+public class GameFrame extends JFrame implements KeyListener {
 	
 	private PongPanel pong;
 	
@@ -44,10 +44,6 @@ public class GameFrame extends JFrame implements ActionListener, KeyListener {
 	@Override public void keyReleased(KeyEvent e) {
 		pong.keyInput(e, false);
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) { }
-	
 	
 	
 }
