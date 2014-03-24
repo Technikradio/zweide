@@ -11,6 +11,7 @@ public class PongPanel extends JPanel implements Runnable {
 
 	private Player playerL, playerR;
 	private int frameWidth, frameHeight;
+	private Level currentLevel;
 
 	public PongPanel(int x, int y) {
 
@@ -22,8 +23,8 @@ public class PongPanel extends JPanel implements Runnable {
 		playerL = new Player();
 		playerR = new Player();
 
-		playerL.setPosBounds(0, frameHeight - 14);
-		playerR.setPosBounds(0, frameHeight - 14);
+		playerL.setPosBounds(0, frameHeight - 28);
+		playerR.setPosBounds(0, frameHeight - 28);
 
 		playerL.setPos((frameHeight - 28 - playerL.getBarHeight()) / 2);
 		playerR.setPos((frameHeight - 28 - playerR.getBarHeight()) / 2);
@@ -34,20 +35,23 @@ public class PongPanel extends JPanel implements Runnable {
 		playerR.setKEYCODE_UP(38);
 		playerR.setKEYCODE_DOWN(40);
 
-		Thread thread = new Thread(this);
-		thread.start();
+		setCurrentLevel(Resources.getDefaultLevel());
+
+		Thread gameThread = new Thread(this);
+		gameThread.start();
 	}
 
 	@Override
 	public void run() {
 		while (true) {
-			playerR.setPos(playerR.getPos() + 10 * playerR.getMovement());
-			playerL.setPos(playerL.getPos() + 10 * playerL.getMovement());
+			playerR.setPos(playerR.getPos() + currentLevel.barSpeed
+					* playerR.getMovement());
+			playerL.setPos(playerL.getPos() + currentLevel.barSpeed
+					* playerL.getMovement());
 			repaint();
 			try {
 				Thread.sleep(20);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -57,8 +61,23 @@ public class PongPanel extends JPanel implements Runnable {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.setColor(Color.white);
-		g.fillRect(7 + 20, playerL.getPos(), 10, 50);
-		g.fillRect(frameWidth - 14 - 20 - 10, playerR.getPos(), 10, 50);
+		g.fillRect(7 + 20, playerL.getPos(), 10, playerL.getBarHeight());
+		g.fillRect(frameWidth - 37, playerR.getPos(), 10, playerR.getBarHeight());
+		
+		//coming soon
+		g.fillRect(frameWidth/2-8, frameHeight/2-8, 16, 16);
+		g.drawString("The Ball: coming soon!", frameWidth/2-64, frameHeight/2+32);
+		
+	}
+
+	public Level getCurrentLevel() {
+		return currentLevel;
+	}
+
+	public void setCurrentLevel(Level newLevel) {
+		currentLevel = newLevel;
+		playerL.setBarHeight(currentLevel.barHeight);
+		playerR.setBarHeight(currentLevel.barHeight);
 	}
 
 	public void keyInput(KeyEvent e, boolean active) {

@@ -1,7 +1,6 @@
 package zweide.tompong;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 
 public class Menu extends JFrame
 {

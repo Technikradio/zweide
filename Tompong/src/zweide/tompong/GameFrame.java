@@ -16,8 +16,8 @@ public class GameFrame extends JFrame implements KeyListener {
 	public GameFrame() {
 		//int x = 800;
 		//int y = 600;
-		int x = Recources.sizeX;
-		int y = Recources.sizeY;
+		int x = Resources.sizeX;
+		int y = Resources.sizeY;
 		setSize(x, y);
 		setTitle("Tompong" + " :: " + "ATM and FDM use directional keys!");
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
