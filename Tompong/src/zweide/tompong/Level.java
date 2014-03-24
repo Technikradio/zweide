@@ -9,4 +9,5 @@ public class Level{
   public int minUpSpeedBoss;
   public int maxSpeedBoss;
   public int ballSpeed;
+  public String name;
 }
