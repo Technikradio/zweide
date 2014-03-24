@@ -1,7 +1,9 @@
 package zweide.tompong;
 public static class Recources{
   
-  public static final Level[] = LoadLevels();
+  public static final Level[] levels = LoadLevels();
+  public static final int sizeX = 800;
+  public static final int sizeY = 600;
   
   public static Level[] LoadLevels(){
     Level[2] levels; //easy medium hard
@@ -17,7 +19,7 @@ public static class Recources{
       l.minDownSpeedBoss = 9;
       l.maxDownSpeedBoss = 25;
       l.ballSpeed = 5;
-      Levels[0] = l;
+      levels[0] = l;
     }
     { //Level medium
       Level l;
@@ -31,7 +33,7 @@ public static class Recources{
       l.minDownSpeedBoss = 8;
       l.maxDownSpeedBoss = 30;
       l.ballSpeed = 10;
-      Levels[1] = l;
+      levels[1] = l;
     }
     { //Level hard
       Level l;
@@ -45,7 +47,7 @@ public static class Recources{
       l.minDownSpeedBoss = 10;
       l.maxDownSpeedBoss = 30;
       l.ballSpeed = 15;
-      Levels[2] = l;
+      levels[2] = l;
     }
     return levels;
   }
