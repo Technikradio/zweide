@@ -19,7 +19,7 @@ public static class Recources{
       l.ballSpeed = 5;
       Levels[0] = l;
     }
-    { //Level easy
+    { //Level medium
       Level l;
       l.name = "medium";
       l.minUpSpeedPlayer = 8;
@@ -33,7 +33,7 @@ public static class Recources{
       l.ballSpeed = 10;
       Levels[1] = l;
     }
-    { //Level easy
+    { //Level hard
       Level l;
       l.name = "hard";
       l.minUpSpeedPlayer = 8;
