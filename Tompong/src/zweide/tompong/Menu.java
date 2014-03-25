@@ -19,19 +19,19 @@ public class Menu extends JFrame
    {
      	EasyButto = new JButton();
 	EasyButto.setLocation(0,0);
-	EasyButto.setSize(391,70);
+	EasyButto.setSize(390,70);
 	EasyButto.setText("Easy");
 	getContentPane().add(EasyButto);
 
 	mediu = new JButton();
 	mediu.setLocation(0,70);
-	mediu.setSize(392,70);
+	mediu.setSize(390,70);
 	mediu.setText("Medium");
 	getContentPane().add(mediu);
 
 	har = new JButton();
 	har.setLocation(0,140);
-	har.setSize(391,70);
+	har.setSize(390,70);
 	har.setText("Hard");
 	getContentPane().add(har);
 
@@ -41,8 +41,8 @@ public class Menu extends JFrame
 	costum.setText("Costum");
 	getContentPane().add(costum);
 
-	setTitle("men");
-	setSize(400,309);
+	setTitle("menu");
+	setSize(390,310);
 	setVisible(true);
 	setResizable(false);
 	
