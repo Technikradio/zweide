@@ -5,11 +5,13 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 
 @SuppressWarnings("serial")
-public class GameFrame extends JFrame implements KeyListener {
+public class GameFrame extends JFrame implements KeyListener, MouseListener {
 
 	private PongPanel pong;
 
@@ -32,6 +34,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		add(pong);
 
 		this.addKeyListener(this);
+		this.addMouseListener(this);
 
 	}
 
@@ -48,5 +51,24 @@ public class GameFrame extends JFrame implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 		pong.keyInput(e, false);
 	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) { }
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		if (e.isPopupTrigger()) {
+            Resources.menu.call(this);
+            Resources.gameThread.suspend();
+        }
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) { }
+	@Override
+	public void mouseEntered(MouseEvent e) { }
+
+	@Override
+	public void mouseExited(MouseEvent e) { }
 
 }

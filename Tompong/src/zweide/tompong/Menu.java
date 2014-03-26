@@ -13,6 +13,8 @@ public class Menu extends JFrame implements ActionListener
      JButton har;
      JButton costum;
      
+     GameFrame gameframe;
+     
    public Menu()
    {
      getContentPane().setLayout(null);
@@ -51,23 +53,54 @@ public class Menu extends JFrame implements ActionListener
 
 	setTitle("menu");
 	setSize(390,310);
-	setVisible(true);
 	setResizable(false);
    }
    
-    public void actionPerformed(ActionEvent e) {
+   public void call(GameFrame gameframe) {
+	   this.setVisible(true);
+	   this.gameframe = gameframe;
+   }
+   
+   public void menu_OnEasyClick(){
+		Resources.levelIndex = 0;
+		Resources.menu.setVisible(false);
+		gameframe.setVisible(true);
+	}
+	
+	public void menu_OnMediumClick(){
+		Resources.levelIndex = 1;
+		Resources.menu.setVisible(false);
+		gameframe.setVisible(true);
+	}
+
+	public void menu_OnHardClick(){
+		Resources.levelIndex = 2;
+		Resources.menu.setVisible(false);
+		gameframe.setVisible(true);
+	}
+	
+	public void menu_OnCostumClick(){
+		//TODO implement custom menu
+		Resources.menu.setVisible(false);
+		gameframe.setVisible(true);
+	}
+   
+    public void actionPerformed(ActionEvent e) {  	
         if(e.getSource() == EasyButto){
-            Tompong.menu_OnEasyClick();
+            menu_OnEasyClick();
         }
-        if(e.getSource() == mediu){
-            Tompong.menu_OnMediumClick();
+        else if(e.getSource() == mediu){
+            menu_OnMediumClick();
         }
-        if(e.getSource() == har){
-            Tompong.menu_OnHardClick();
+        else if(e.getSource() == har){
+            menu_OnHardClick();
         }
-        if(e.getSource() == costum){
-            Tompong.menu_OnCostumClick();
+        else if(e.getSource() == costum){
+            menu_OnCostumClick();
         }
+        
+        Resources.gameThread.resume();
+        
     }
 }  
 

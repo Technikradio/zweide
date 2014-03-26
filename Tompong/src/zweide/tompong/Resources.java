@@ -6,12 +6,17 @@ public class Resources {
 	public static final int defaultLevelIndex=1;
 	public static final int sizeX = 800;
 	public static final int sizeY = 600;
+	
+	public static Menu menu;
+	
+	public static Thread gameThread;
 
 	public static byte levelIndex = defaultLevelIndex;
-	public static byte playerAGoals = 0;
-	public static byte playerBGoals = 0;
 
 	static{
+
+		menu = new Menu();
+		
 		levels = new Level[3];
 		{
 			Level l = new Level();

@@ -37,13 +37,14 @@ public class PongPanel extends JPanel implements Runnable {
 
 		setCurrentLevel(Resources.getDefaultLevel());
 
-		Thread gameThread = new Thread(this);
-		gameThread.start();
+		Resources.gameThread = new Thread(this);
+		Resources.gameThread.start();
 	}
 
 	@Override
 	public void run() {
 		while (true) {
+			
 			playerR.setPos(playerR.getPos() + currentLevel.barSpeed
 					* playerR.getMovement());
 			playerL.setPos(playerL.getPos() + currentLevel.barSpeed
