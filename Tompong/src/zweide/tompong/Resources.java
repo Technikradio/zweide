@@ -8,6 +8,8 @@ public class Resources {
 	public static final int sizeY = 600;
 
 	public static byte levelIndex = defaultLevelIndex;
+	public static byte playerAGoals = 0;
+	public static byte playerBGoals = 0;
 
 	static{
 		levels = new Level[3];
