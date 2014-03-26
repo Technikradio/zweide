@@ -72,20 +72,9 @@ public class Menu extends JFrame implements ActionListener {
 		this.gameframe = gameframe;
 	}
 
-	public void menu_OnEasyClick() {
-		Resources.levelIndex = 0;
-		Resources.menu.setVisible(false);
-		gameframe.setVisible(true);
-	}
-
-	public void menu_OnMediumClick() {
-		Resources.levelIndex = 1;
-		Resources.menu.setVisible(false);
-		gameframe.setVisible(true);
-	}
-
-	public void menu_OnHardClick() {
-		Resources.levelIndex = 2;
+	public void menu_OnClick(int index) {
+		Resources.levelIndex = (byte) index;
+		gameframe.pong.setCurrentLevel(Resources.getLevels()[index]);
 		Resources.menu.setVisible(false);
 		gameframe.setVisible(true);
 	}
@@ -98,11 +87,11 @@ public class Menu extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == EasyButto) {
-			menu_OnEasyClick();
+			menu_OnClick(0);
 		} else if (e.getSource() == mediu) {
-			menu_OnMediumClick();
+			menu_OnClick(1);
 		} else if (e.getSource() == har) {
-			menu_OnHardClick();
+			menu_OnClick(2);
 		} else if (e.getSource() == costum) {
 			menu_OnCostumClick();
 		}

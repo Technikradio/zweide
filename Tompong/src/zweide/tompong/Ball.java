@@ -46,8 +46,8 @@ public class Ball {
 	}
 
 	public void setVerticalMotion(int vm) {
-		if (vm >= speed)
-			this.verticalMotion = speed - 1;
+		if (Math.abs(vm) >= speed)
+			this.verticalMotion = vm > 0 ? speed - 1 : -(speed - 1);
 		else
 			this.verticalMotion = vm;
 	}
@@ -66,6 +66,11 @@ public class Ball {
 
 	public void setHoriPos(double horiPos) {
 		this.horiPos = horiPos;
+	}
+
+	public void setPos(int x, int y) {
+		this.horiPos = x;
+		this.vertPos = y;
 	}
 
 	public Player getLastHitPlayer() {
@@ -92,7 +97,7 @@ public class Ball {
 		return upperPosBounds;
 	}
 
-	public void setPosBounds(int upperPosBounds, int lowerPosBounds) {
+	public void setPosBounds(int lowerPosBounds, int upperPosBounds) {
 		this.upperPosBounds = upperPosBounds;
 		this.lowerPosBounds = lowerPosBounds;
 	}

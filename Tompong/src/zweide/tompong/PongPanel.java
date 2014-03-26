@@ -2,6 +2,7 @@ package zweide.tompong;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,11 +35,11 @@ public class PongPanel extends JPanel implements Runnable {
 		playerL.setPos((frameHeight - 28 - playerL.getBarHeight()) / 2);
 		playerR.setPos((frameHeight - 28 - playerR.getBarHeight()) / 2);
 
-		playerL.setKEYCODE_UP(37);
-		playerL.setKEYCODE_DOWN(39);
+		playerL.setKEYCODE_UP(38);
+		playerL.setKEYCODE_DOWN(40);
 
-		playerR.setKEYCODE_UP(38);
-		playerR.setKEYCODE_DOWN(40);
+		playerR.setKEYCODE_UP(107);
+		playerR.setKEYCODE_DOWN(10);
 
 		setCurrentLevel(Resources.getDefaultLevel());
 
@@ -51,11 +52,9 @@ public class PongPanel extends JPanel implements Runnable {
 
 		// initialize
 		long startTime, elapsedTime;
-		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-		if (Math.random() >= 0.5)
-			mainBall.setVerticalMotion(1);
-		else
-			mainBall.setVerticalMotion(-1);
+		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+		mainBall.setVerticalMotion((int) ((double) (-currentLevel.ballSpeed / 2) + (double) Math
+				.random() * (double) (currentLevel.ballSpeed)));
 		if (Math.random() >= 0.5)
 			mainBall.setHorizontalDirection(1);
 		else
@@ -88,6 +87,53 @@ public class PongPanel extends JPanel implements Runnable {
 			mainBall.setVertPos(mainBall.getVertPos()
 					+ mainBall.getVerticalMotion());
 
+			// Hitbox (?? how was it called??)
+			if (new Rectangle(mainBall.getHoriPos(), mainBall.getVertPos(),
+					mainBall.getSize(), mainBall.getSize()).intersects(27,
+					playerL.getPos(), 10, playerL.getBarHeight())) {
+				// Ball is in left player
+				mainBall.setHorizontalDirection(1);
+				mainBall.setVerticalMotion((int) Math.round(mainBall
+						.getVerticalMotion()
+						- (double) ((playerL.getPos() + playerL.getBarHeight() / 2) - (mainBall
+								.getVertPos() + mainBall.getSize() / 2))
+						/ playerL.getBarHeight() * currentLevel.ballSpeed));
+			}
+			if (new Rectangle(mainBall.getHoriPos(), mainBall.getVertPos(),
+					mainBall.getSize(), mainBall.getSize()).intersects(
+					frameWidth - 37, playerR.getPos(), 10,
+					playerR.getBarHeight())) {
+				// Ball is in right player
+				mainBall.setHorizontalDirection(-1);
+				mainBall.setVerticalMotion((int) Math.round(mainBall
+						.getVerticalMotion()
+						- (double) ((playerR.getPos() + playerR.getBarHeight() / 2) - (mainBall
+								.getVertPos() + mainBall.getSize() / 2))
+						/ playerR.getBarHeight() * currentLevel.ballSpeed));
+			}
+			if (mainBall.getVertPos() + mainBall.getSize() > mainBall
+					.getUpperPosBounds()) {
+				// ball is at low border
+				mainBall.setVerticalMotion(-1
+						* Math.abs(mainBall.getVerticalMotion()));
+			}
+			if (mainBall.getVertPos() < mainBall.getLowerPosBounds()) {
+				// ball is at low border
+				mainBall.setVerticalMotion(Math.abs(mainBall
+						.getVerticalMotion()));
+			}
+			if (mainBall.getHoriPos() < 0) {
+				// Ball left goal
+				mainBall.setPos(frameWidth / 2 - 8, frameHeight / 2 - 8);
+				newBallParameter();
+				playerR.setScore(playerR.getScore() + 1);
+			}
+			if (mainBall.getHoriPos() + mainBall.getSize() > frameWidth) {
+				// Ball right goal
+				newBallParameter();
+				playerL.setScore(playerL.getScore() + 1);
+			}
+
 			// Repaint
 			repaint();
 
@@ -95,7 +141,7 @@ public class PongPanel extends JPanel implements Runnable {
 			elapsedTime = System.currentTimeMillis() - startTime;
 			if (elapsedTime > 1) {
 				System.out.println("Frame Time high: " + elapsedTime
-						+ " Time: " + sdf.format(new Date()));
+						+ " Time: " + timeFormat.format(new Date()));
 			}
 
 			// Wait
@@ -107,6 +153,14 @@ public class PongPanel extends JPanel implements Runnable {
 		}
 	}
 
+	private void newBallParameter() {
+		mainBall.setVerticalMotion((int) ((double) (-currentLevel.ballSpeed / 2) + (double) Math
+				.random() * (double) (currentLevel.ballSpeed)));
+		mainBall.setPos(frameWidth / 2 - mainBall.getSize() / 2, frameHeight
+				/ 2 - mainBall.getSize() / 2);
+		mainBall.setHorizontalDirection(-mainBall.getHorizontalDirection());
+	}
+
 	@Override
 	protected void paintComponent(Graphics g) {
 
@@ -115,13 +169,22 @@ public class PongPanel extends JPanel implements Runnable {
 		g.setColor(Color.white);
 
 		// Player
-		g.fillRect(7 + 20, playerL.getPos(), 10, playerL.getBarHeight());
+		g.fillRect(27, playerL.getPos(), 10, playerL.getBarHeight());
 		g.fillRect(frameWidth - 37, playerR.getPos(), 10,
 				playerR.getBarHeight());
 
 		// Ball
 		g.fillRect(mainBall.getHoriPos(), mainBall.getVertPos(),
 				mainBall.getSize(), mainBall.getSize());
+
+		// dividing Line
+		for (int i = 0; i < frameHeight; i += 32) {
+			g.fillRect(getWidth() / 2 - 1, i, 2, 16);
+		}
+
+		// Score
+		g.drawString(Integer.toString(playerL.getScore()), 300, 100);
+		g.drawString(Integer.toString(playerR.getScore()), 500, 100);
 
 	}
 

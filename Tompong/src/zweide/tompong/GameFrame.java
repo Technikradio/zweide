@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame implements KeyListener, MouseListener {
 
-	private PongPanel pong;
+	public PongPanel pong;
 
 	public GameFrame() {
 		// int x = 800;
