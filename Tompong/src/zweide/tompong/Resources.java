@@ -7,6 +7,8 @@ public class Resources {
 	public static final int sizeX = 800;
 	public static final int sizeY = 600;
 
+	public static byte levelIndex = defaultLevelIndex;
+
 	static{
 		levels = new Level[3];
 		{
@@ -41,5 +43,9 @@ public class Resources {
 	
 	public static Level getDefaultLevel() {
 		return levels[defaultLevelIndex];
+	}
+	
+	public static byte getCurrentLevel(){
+		return levelIndex;
 	}
 }
