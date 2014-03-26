@@ -1,9 +1,11 @@
 package zweide.tompong;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@SuppressWarnings("serial")
 public class Menu extends JFrame implements ActionListener
 {
     JButton EasyButto;

@@ -67,8 +67,6 @@ public class PongPanel extends JPanel implements Runnable {
 		//coming soon
 		g.fillRect(frameWidth/2-8, frameHeight/2-8, 16, 16);
 		g.drawString("The Ball: coming soon!", frameWidth/2-64, frameHeight/2+32);
-		g.drawString(Resources.playerAGoals.toString() + " : " + Resources.playerBGoals.toString(),
-			     frameWidth/2, 15);
 		
 	}
 
