@@ -16,16 +16,18 @@ public class GameFrame extends JFrame implements KeyListener, MouseListener {
 	private PongPanel pong;
 
 	public GameFrame() {
-		//int x = 800;
-		//int y = 600;
+		// int x = 800;
+		// int y = 600;
 		int x = Resources.sizeX;
 		int y = Resources.sizeY;
 		setSize(x, y);
-		setTitle("Tompong" + " :: " + "ATM and FDM use directional keys!");
-		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-		int posx = (d.width - x) / 2;
-		int posy = (d.height - y) / 2;
-		setLocation(posx, posy);
+		setTitle("Tompong" + " :: " + " Use directional keys and right click!");
+		{
+			Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+			int posx = (d.width - x) / 2;
+			int posy = (d.height - y) / 2;
+			setLocation(posx, posy);
+		}
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 		setBackground(Color.black);
@@ -53,22 +55,27 @@ public class GameFrame extends JFrame implements KeyListener, MouseListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e) { }
+	public void mouseClicked(MouseEvent e) {
+	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		if (e.isPopupTrigger()) {
-            Resources.menu.call(this);
-            Resources.gameThread.suspend();
-        }
+			Resources.menu.call(this);
+			Resources.gameThread.suspend();
+		}
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) { }
-	@Override
-	public void mouseEntered(MouseEvent e) { }
+	public void mousePressed(MouseEvent e) {
+	}
 
 	@Override
-	public void mouseExited(MouseEvent e) { }
+	public void mouseEntered(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+	}
 
 }

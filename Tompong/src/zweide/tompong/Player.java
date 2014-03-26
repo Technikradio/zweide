@@ -2,34 +2,34 @@ package zweide.tompong;
 
 public class Player {
 
-	private int barHeight=64;
-	
+	private int barHeight = 64;
+
 	private int score = 0;
-	
+
 	private int pos = 0;
-	
+
 	private int lowestPos;
 	private int highestPos;
 
 	private int KEYCODE_UP;
 	private int KEYCODE_DOWN;
 
-	private boolean goingUp=false;
-	private boolean goingDown=false;
+	private boolean goingUp = false;
+	private boolean goingDown = false;
 
-	private int movement=0;
-	
+	private int movement = 0;
+
 	private void updateMovement() {
-		movement=0;
-		if(goingUp)
+		movement = 0;
+		if (goingUp)
 			movement--;
-		if(goingDown)
+		if (goingDown)
 			movement++;
 	}
 
 	public void setPosBounds(int lowest, int highest) {
-		lowestPos=lowest;
-		highestPos=highest;
+		lowestPos = lowest;
+		highestPos = highest;
 	}
 
 	public int getBarHeight() {
@@ -76,10 +76,10 @@ public class Player {
 
 	public void setPos(int pos) {
 		this.pos = pos;
-		if(this.pos<this.lowestPos)
-			this.pos=this.lowestPos;
-		if(this.pos>this.highestPos-this.barHeight)
-			this.pos=this.highestPos-this.barHeight;
+		if (this.pos < this.lowestPos)
+			this.pos = this.lowestPos;
+		if (this.pos > this.highestPos - this.barHeight)
+			this.pos = this.highestPos - this.barHeight;
 	}
 
 	public int getKEYCODE_UP() {

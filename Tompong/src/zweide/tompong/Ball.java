@@ -3,18 +3,35 @@ package zweide.tompong;
 public class Ball {
 
 	private int verticalMotion;
+	private int horizontalDirection;
+
 	private int vertPos;
 	private double horiPos;
-	private Player lastHitPlayer;
+
 	private int speed;
+
 	private int size;
+
+	private Player lastHitPlayer;
 
 	private int lowerPosBounds;
 	private int upperPosBounds;
-	
-	public Ball(int Size, int x, int y) {
-		
+
+	public Ball(int size, int x, int y) {
+		this.size = size;
+		this.horiPos = (int) x;
+		this.vertPos = y;
 	}
+
+	/*
+	 * @returns: the distance to move the ball sideways
+	 */
+	public int getHorizontalDistance() {
+		return (int) Math.round(Math.sqrt(speed * speed - verticalMotion
+				* verticalMotion));
+	}
+
+	// Standard GETTERS/SETTERS
 
 	public int getSize() {
 		return size;
@@ -28,8 +45,11 @@ public class Ball {
 		return verticalMotion;
 	}
 
-	public void setVerticalMotion(int verticalMotion) {
-		this.verticalMotion = verticalMotion;
+	public void setVerticalMotion(int vm) {
+		if (vm >= speed)
+			this.verticalMotion = speed - 1;
+		else
+			this.verticalMotion = vm;
 	}
 
 	public int getVertPos() {
@@ -40,8 +60,8 @@ public class Ball {
 		this.vertPos = vertPos;
 	}
 
-	public double getHoriPos() {
-		return horiPos;
+	public int getHoriPos() {
+		return (int) Math.round(horiPos);
 	}
 
 	public void setHoriPos(double horiPos) {
@@ -68,16 +88,21 @@ public class Ball {
 		return lowerPosBounds;
 	}
 
-	public void setLowerPosBounds(int lowerPosBounds) {
-		this.lowerPosBounds = lowerPosBounds;
-	}
-
 	public int getUpperPosBounds() {
 		return upperPosBounds;
 	}
 
-	public void setUpperPosBounds(int upperPosBounds) {
+	public void setPosBounds(int upperPosBounds, int lowerPosBounds) {
 		this.upperPosBounds = upperPosBounds;
+		this.lowerPosBounds = lowerPosBounds;
+	}
+
+	public int getHorizontalDirection() {
+		return horizontalDirection;
+	}
+
+	public void setHorizontalDirection(int horizontalDirection) {
+		this.horizontalDirection = horizontalDirection;
 	}
 
 }
