@@ -54,4 +54,12 @@ public class Resources {
 	public static byte getCurrentLevel() {
 		return levelIndex;
 	}
+
+        public static Level getLevel() {
+                if (levelIndex == (byte) 4) {
+                      return costumLevel;
+                } else {
+                      return levels[(int) levelIndex];
+                }
+        }
 }
