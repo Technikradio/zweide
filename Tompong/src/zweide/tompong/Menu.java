@@ -2,6 +2,7 @@ package zweide.tompong;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+Import javax.swing.JTextField;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -14,6 +15,10 @@ public class Menu extends JFrame implements ActionListener {
 	JButton mediu;
 	JButton har;
 	JButton costum;
+        JTextField ballSpeedTF;
+        JTextField barHeightTF;
+        JTextField barSpeedTF;
+        JButton cSubmitt;
 
 	GameFrame gameframe;
 
@@ -52,8 +57,33 @@ public class Menu extends JFrame implements ActionListener {
 		costum.addActionListener(this);
 		getContentPane().add(costum);
 
+                ballSpeedTF = new JTextField();
+                ballSpeedTF.setLocation(395, 0);
+                ballSpeedTF.setSize(390, 70);
+                ballSpeedTF.setVisible(false);
+                add(ballSpeedTF);
+
+                barHeightTF = new JTextField();
+                barHeightTF.setLocation(395, 70);
+                barHeightTF.setSize(390, 70);
+                barHeightTF.setVisible(false);
+                add(barHeightTF);
+
+                barSpeedTF = new JTextField();
+                barSpeedTF.setLocation(395, 140);
+                barSpeedTF.setSize(390, 70);
+                barSpeedTF.setVisible(false);
+                add(barSpeedTF);
+
+                cSubmitt = new JButton();
+                cSubmitt.setLocation(395, 210);
+                cSubmitt.setSize(390, 70);
+                cSubmitt.setText("OK & Play");
+                cSubmitt.addActionListener(this);
+                add(cSubmitt);
+
 		setTitle("menu");
-		setSize(390, 310);
+		setSize(392, 310);
 
 		// TODO hard coded size 390/310
 
@@ -81,9 +111,24 @@ public class Menu extends JFrame implements ActionListener {
 
 	public void menu_OnCostumClick() {
 		// TODO implement custom menu
+                setSize(392 * 2, 310);
+                cSubmitt.setVisible(true);
+                ballSpeedTF.setVisible(true);
+                barSpeedTF.setVisible(true);
+                barHeightTF.setVisible(true);
+	}
+
+        void menu_OnSubmittClick() {
+                Level cl = new Level();
+                cl.name = "costum";
+                cl.barSpeed = Integer.parseInt(barSpeedTF.getText());
+                cl.barHeight = Integer.parseInt(barHeightTF.getText());
+                cl.ballSpeed = Integer.parseInt(ballSpeedTF.getText());
+                Resources.levelIndex = (byte) 4;
+                Resources.costumLevel = cl;
 		Resources.menu.setVisible(false);
 		gameframe.setVisible(true);
-	}
+        }
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == EasyButto) {
@@ -94,7 +139,9 @@ public class Menu extends JFrame implements ActionListener {
 			menu_OnClick(2);
 		} else if (e.getSource() == costum) {
 			menu_OnCostumClick();
-		}
+		} else if (e.getSource() == cSubmitt) {
+                        menu_OnSubmittClick();
+                }
 
 		Resources.gameThread.resume();
 
