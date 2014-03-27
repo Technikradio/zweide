@@ -8,10 +8,9 @@ public class Resources {
 	public static final int sizeY = 600;
 
 	public static Menu menu;
-
 	public static Thread gameThread;
-
 	public static byte levelIndex = defaultLevelIndex;
+        public static Level costumLevel;
 
 	static {
 
