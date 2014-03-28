@@ -2,7 +2,8 @@ package zweide.tompong;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-Import javax.swing.JTextField;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -15,10 +16,14 @@ public class Menu extends JFrame implements ActionListener {
 	JButton mediu;
 	JButton har;
 	JButton costum;
-        JTextField ballSpeedTF;
-        JTextField barHeightTF;
-        JTextField barSpeedTF;
-        JButton cSubmitt;
+	JButton config;
+	JTextField ballSpeedTF;
+	JTextField barHeightTF;
+	JTextField barSpeedTF;
+	JLabel ballSpeedLB;
+	JLabel barHeightLB;
+	JLabel barSpeedLB;
+	JButton cSubmitt;
 
 	GameFrame gameframe;
 
@@ -29,6 +34,13 @@ public class Menu extends JFrame implements ActionListener {
 	}
 
 	void setupGUI() {
+		config = new JButton();
+		config.setLocation(0, 70 * 4 + 5);
+		config.setSize(390, 70);
+		config.setText("Settings");
+		config.addActionListener(this);
+		add(config);
+
 		EasyButto = new JButton();
 		EasyButto.setLocation(0, 0);
 		EasyButto.setSize(390, 70);
@@ -57,33 +69,55 @@ public class Menu extends JFrame implements ActionListener {
 		costum.addActionListener(this);
 		getContentPane().add(costum);
 
-                ballSpeedTF = new JTextField();
-                ballSpeedTF.setLocation(395, 0);
-                ballSpeedTF.setSize(390, 70);
-                ballSpeedTF.setVisible(false);
-                add(ballSpeedTF);
+		ballSpeedTF = new JTextField();
+		ballSpeedTF.setLocation(395, 0 + 35);
+		ballSpeedTF.setSize(390, 35);
+		ballSpeedTF.setVisible(false);
+		add(ballSpeedTF);
 
-                barHeightTF = new JTextField();
-                barHeightTF.setLocation(395, 70);
-                barHeightTF.setSize(390, 70);
-                barHeightTF.setVisible(false);
-                add(barHeightTF);
+		barHeightTF = new JTextField();
+		barHeightTF.setLocation(395, 70 + 30);
+		barHeightTF.setSize(390, 35);
+		barHeightTF.setVisible(false);
+		add(barHeightTF);
 
-                barSpeedTF = new JTextField();
-                barSpeedTF.setLocation(395, 140);
-                barSpeedTF.setSize(390, 70);
-                barSpeedTF.setVisible(false);
-                add(barSpeedTF);
+		barSpeedTF = new JTextField();
+		barSpeedTF.setLocation(395, 140 + 30);
+		barSpeedTF.setSize(390, 35);
+		barSpeedTF.setVisible(false);
+		add(barSpeedTF);
 
-                cSubmitt = new JButton();
-                cSubmitt.setLocation(395, 210);
-                cSubmitt.setSize(390, 70);
-                cSubmitt.setText("OK & Play");
-                cSubmitt.addActionListener(this);
-                add(cSubmitt);
+		cSubmitt = new JButton();
+		cSubmitt.setLocation(395, 210);
+		cSubmitt.setSize(390, 70);
+		cSubmitt.setText("OK & Play");
+		cSubmitt.addActionListener(this);
+		add(cSubmitt);
+
+		ballSpeedLB = new JLabel();
+		ballSpeedLB.setLocation(400, 10);
+		ballSpeedLB.setSize(390, 35);
+		ballSpeedLB.setText("Ball Speed");
+		ballSpeedLB.setVisible(false);
+		add(ballSpeedLB);
+
+		barHeightLB = new JLabel();
+		barHeightLB.setLocation(400, 55);
+		barHeightLB.setSize(390, 35);
+		barHeightLB.setText("bar Height");
+		barHeightLB.setVisible(false);
+		add(barHeightLB);
+
+		barSpeedLB = new JLabel();
+		barSpeedLB.setLocation(400, 140);
+		barSpeedLB.setSize(390, 35);
+		barHeightLB.setSize(390, 70);
+		barSpeedLB.setText("Bar Speed");
+		barSpeedLB.setVisible(false);
+		add(barSpeedLB);
 
 		setTitle("menu");
-		setSize(392, 310);
+		setSize(392, 70 * 6 - 35);
 
 		// TODO hard coded size 390/310
 
@@ -111,25 +145,30 @@ public class Menu extends JFrame implements ActionListener {
 
 	public void menu_OnCostumClick() {
 		// TODO implement custom menu
-                setSize(392 * 2, 310);
-                cSubmitt.setVisible(true);
-                ballSpeedTF.setVisible(true);
-                barSpeedTF.setVisible(true);
-                barHeightTF.setVisible(true);
+		setSize(392 * 2 + 3, 70 * 6 - 35);
+		cSubmitt.setVisible(true);
+		ballSpeedTF.setVisible(true);
+		barSpeedTF.setVisible(true);
+		barHeightTF.setVisible(true);
+		ballSpeedLB.setVisible(true);
+		barSpeedLB.setVisible(true);
+		barHeightLB.setVisible(true);
+		config.setSize(390 * 2 + 5, 70);
 	}
 
-        void menu_OnSubmittClick() {
-                Level cl = new Level();
-                cl.name = "costum";
-                cl.barSpeed = Integer.parseInt(barSpeedTF.getText());
-                cl.barHeight = Integer.parseInt(barHeightTF.getText());
-                cl.ballSpeed = Integer.parseInt(ballSpeedTF.getText());
-                Resources.levelIndex = (byte) 4;
-                Resources.costumLevel = cl;
+	void menu_OnSubmittClick() {
+		Level cl = new Level();
+		cl.name = "costum";
+		cl.barSpeed = Integer.parseInt(barSpeedTF.getText());
+		cl.barHeight = Integer.parseInt(barHeightTF.getText());
+		cl.ballSpeed = Integer.parseInt(ballSpeedTF.getText());
+		Resources.levelIndex = (byte) 4;
+		Resources.costumLevel = cl;
 		Resources.menu.setVisible(false);
 		gameframe.setVisible(true);
-        }
+	}
 
+	@SuppressWarnings("deprecation")
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == EasyButto) {
 			menu_OnClick(0);
@@ -140,8 +179,12 @@ public class Menu extends JFrame implements ActionListener {
 		} else if (e.getSource() == costum) {
 			menu_OnCostumClick();
 		} else if (e.getSource() == cSubmitt) {
-                        menu_OnSubmittClick();
-                }
+			menu_OnSubmittClick();
+		} else if (e.getSource() == config) {
+			ConfigMenu cm = new ConfigMenu();
+			this.setVisible(false);
+			cm.setVisible(true);
+		}
 
 		Resources.gameThread.resume();
 

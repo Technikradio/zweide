@@ -6,6 +6,7 @@ public class Resources {
 	public static final int defaultLevelIndex = 1;
 	public static final int sizeX = 800;
 	public static final int sizeY = 600;
+	public static final boolean fullscreen = false;
 
 	public static Menu menu;
 	public static Thread gameThread;
@@ -41,6 +42,10 @@ public class Resources {
 			l.barHeight = 48;
 			levels[2] = l;
 		}
+	}
+	
+	public class Translation{
+		
 	}
 
 	public static Level[] getLevels() {

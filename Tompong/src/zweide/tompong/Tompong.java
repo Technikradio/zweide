@@ -9,7 +9,16 @@ public class Tompong {
 	static Menu menu;
 
 	public static void main(String[] args) {
-
+		
+		//Debug
+		///*
+		{
+			System.out.println("Debug");
+			menu = new Menu();
+			menu.setVisible(true);
+		}
+		//*/
+		
 		System.out.println("Start");
 
 		try {
@@ -20,10 +29,9 @@ public class Tompong {
 			e.printStackTrace();
 		}
 
-		gameframe = new GameFrame();
-		gameframe.setVisible(true);
+		//gameframe = new GameFrame();
+		//gameframe.setVisible(true);
 		System.out.println("Setup done");
 
 	}
-
 }
