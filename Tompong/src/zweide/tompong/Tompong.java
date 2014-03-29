@@ -29,6 +29,12 @@ public class Tompong {
 			e.printStackTrace();
 		}
 
+		try {
+			Thread.sleep((long)100); //JRE is here before init thread loaded static block from resources. result: nullreferenceexeption
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		gameframe = new GameFrame();
 		gameframe.setVisible(true);
 		System.out.println("Setup done");

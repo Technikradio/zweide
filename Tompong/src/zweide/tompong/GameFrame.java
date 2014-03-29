@@ -58,7 +58,6 @@ public class GameFrame extends JFrame implements KeyListener, MouseListener {
 	public void mouseClicked(MouseEvent e) {
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		if (e.isPopupTrigger()) {

@@ -168,7 +168,6 @@ public class Menu extends JFrame implements ActionListener {
 		gameframe.setVisible(true);
 	}
 
-	@SuppressWarnings("deprecation")
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == EasyButto) {
 			menu_OnClick(0);
