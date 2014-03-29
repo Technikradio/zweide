@@ -11,7 +11,7 @@ public class Tompong {
 	public static void main(String[] args) {
 		
 		//Debug
-		///*
+		/*
 		{
 			System.out.println("Debug");
 			menu = new Menu();
@@ -29,8 +29,8 @@ public class Tompong {
 			e.printStackTrace();
 		}
 
-		//gameframe = new GameFrame();
-		//gameframe.setVisible(true);
+		gameframe = new GameFrame();
+		gameframe.setVisible(true);
 		System.out.println("Setup done");
 
 	}

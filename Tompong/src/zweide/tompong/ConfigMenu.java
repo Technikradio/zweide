@@ -1,6 +1,5 @@
 package zweide.tompong;
 
-import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +16,7 @@ public class ConfigMenu extends JFrame implements ActionListener {
 	JButton exitWithoutSavingBT; // Nice name right?
 	JTextField translationTF;
 	JLabel translationLB;
-	JCheckBox fullscrennCB;
+	JCheckBox fullscreenCB;
 	JTextField sizeXTF;
 	JLabel sizeXLB;
 	JTextField sizeYTF;
@@ -55,9 +54,15 @@ public class ConfigMenu extends JFrame implements ActionListener {
 		add(sizeYTF);
 		
 		translationTF = new JTextField();
-		translationTF.setLocation(90, 100);
+		translationTF.setLocation(90, 150);
 		translationTF.setSize(400, 35);
 		add(translationTF);
+		
+		fullscreenCB = new JCheckBox();
+		fullscreenCB.setLocation(90, 100);
+		fullscreenCB.setText("Enter fullscreen");
+		fullscreenCB.setSize(400, 35);
+		add(fullscreenCB);
 
 		sizeXLB = new JLabel();
 		sizeXLB.setLocation(5, 25);
@@ -72,7 +77,10 @@ public class ConfigMenu extends JFrame implements ActionListener {
 		add(sizeYLB);
 		
 		translationLB = new JLabel();
-		
+		translationLB.setLocation(5, 155);
+		translationLB.setText("translation");
+		translationLB.setSize(75, 25);
+		add(translationLB);
 
 		setResizable(false);
 		setTitle("Settings");
@@ -86,7 +94,6 @@ public class ConfigMenu extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		if (e.getSource() == exitBT) {
 			writeConfig();
 			dispose();

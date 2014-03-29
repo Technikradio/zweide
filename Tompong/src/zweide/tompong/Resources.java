@@ -6,7 +6,10 @@ public class Resources {
 	public static final int defaultLevelIndex = 1;
 	public static final int sizeX = 800;
 	public static final int sizeY = 600;
-	public static final boolean fullscreen = false;
+	
+	private static final boolean fullscreen = false;
+	private static final String translation = "";
+	private static final Translation translationDirect;
 
 	public static Menu menu;
 	public static Thread gameThread;
@@ -14,7 +17,9 @@ public class Resources {
         public static Level costumLevel;
 
 	static {
-
+		
+		translationDirect = new Translation();
+		
 		menu = new Menu();
 
 		levels = new Level[3];
@@ -44,8 +49,16 @@ public class Resources {
 		}
 	}
 	
-	public class Translation{
-		
+	public static boolean getFullscreenMode(){
+		return fullscreen;
+	}
+	
+	public static String getCurrentTranslation(){
+		return translation;
+	}
+	
+	public static Translation getTranslation(){
+		return translationDirect;
 	}
 
 	public static Level[] getLevels() {
