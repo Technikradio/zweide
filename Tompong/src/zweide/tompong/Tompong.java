@@ -10,8 +10,8 @@ public class Tompong {
 
 	public static void main(String[] args) {
 		
-		//Debug
-		/*
+		//Debug Menus
+		///*
 		{
 			System.out.println("Debug");
 			menu = new Menu();

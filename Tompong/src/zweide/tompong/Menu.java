@@ -145,7 +145,6 @@ public class Menu extends JFrame implements ActionListener {
 
 	public void menu_OnCostumClick() {
 		// TODO implement custom menu
-		setSize(392 * 2 + 3, 70 * 6 - 35);
 		cSubmitt.setVisible(true);
 		ballSpeedTF.setVisible(true);
 		barSpeedTF.setVisible(true);
@@ -154,6 +153,13 @@ public class Menu extends JFrame implements ActionListener {
 		barSpeedLB.setVisible(true);
 		barHeightLB.setVisible(true);
 		config.setSize(390 * 2 + 5, 70);
+		for(int i = 392; i <= 392 * 2 + 3; i++){
+			setSize(i, 70*6-35);
+			try {
+				Thread.sleep((long) 5);
+			} catch (InterruptedException e) {;}
+		}
+		setSize(392 * 2 + 3, 70 * 6 - 35);
 	}
 
 	void menu_OnSubmittClick() {

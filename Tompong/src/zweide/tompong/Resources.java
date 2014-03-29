@@ -21,6 +21,7 @@ public class Resources {
 	public static byte levelIndex = defaultLevelIndex;
 	public static Level costumLevel;
 
+	@SuppressWarnings("unused") //Use is commented
 	private static String getSettingValue(String v, String d) {
 		BufferedReader reader = null;
 		try {
