@@ -25,7 +25,7 @@ public class Tompong {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException | InstantiationException
 				| IllegalAccessException | UnsupportedLookAndFeelException e) {
-			System.err.println("Error while changeing System Look and Feel!");
+			System.err.println("Exception while changeing System Look and Feel!");
 			e.printStackTrace();
 		}
 
