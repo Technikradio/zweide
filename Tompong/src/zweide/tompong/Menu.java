@@ -153,7 +153,7 @@ public class Menu extends JFrame implements ActionListener {
 		barSpeedLB.setVisible(true);
 		barHeightLB.setVisible(true);
 		config.setSize(390 * 2 + 5, 70);
-		for(int i = 392; i <= 392 * 2 + 3; i = i + 3){
+		for(int i = 392; i <= 392 * 2 + 3; i += 3){
 			setSize(i, 70*6-35);
 			try {
 				Thread.sleep((long) 5);
