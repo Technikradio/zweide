@@ -146,7 +146,7 @@ public class PongPanel extends JPanel implements Runnable {
 
 			// Wait
 			try {
-				Thread.sleep(20 - elapsedTime);
+				Thread.sleep((elapsedTime < 20) ? (20 - elapsedTime) : 1L);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

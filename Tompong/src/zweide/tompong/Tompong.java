@@ -30,7 +30,7 @@ public class Tompong {
 		}
 
 		try {
-			Thread.sleep((long)100); //JRE is here before init thread loaded static block from resources. result: nullreferenceexeption
+			Thread.sleep(100L); //JRE is here before init thread loaded static block from Resources.java ==> nullreferenceexeption
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
