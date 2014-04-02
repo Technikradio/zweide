@@ -43,8 +43,12 @@ public class PongPanel extends JPanel implements Runnable {
 
     setCurrentLevel(Resources.getDefaultLevel());
 
-    Resources.gameThread = new Thread(this);
-    Resources.gameThread.start();
+    createThread();
+  }
+  
+  public void createThread(){
+	  Resources.gameThread = new Thread(this);
+	  Resources.gameThread.start();
   }
 
   @Override

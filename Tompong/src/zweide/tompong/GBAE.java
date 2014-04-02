@@ -1,15 +1,14 @@
 package zweide.tompong;
 
-public static class GBAE{
+public class GBAE{
   public static boolean running = true;
   public static void pause(){
     running = false;
   }
 
-  public static void continue() {
+  public static void play() {
     running = true;
-    Resources.gameThread = new Thread(this);
-    Resources.gameThread.start();
+    Tompong.recreateGameThread();
   }
 
   public static boolean getRunningState(){

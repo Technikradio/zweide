@@ -53,6 +53,10 @@ public class GameFrame extends JFrame implements KeyListener, MouseListener {
   public void keyReleased(KeyEvent e) {
     pong.keyInput(e, false);
   }
+  
+  public void initGameThread(){
+	  pong.createThread();
+  }
 
   @Override
   public void mouseClicked(MouseEvent e) {

@@ -7,6 +7,7 @@ public class Tompong {
 
 	static GameFrame gameframe;
 	static Menu menu;
+	static boolean initialised = false;
 
 	public static void main(String[] args) {
 		
@@ -38,6 +39,10 @@ public class Tompong {
 		gameframe = new GameFrame();
 		gameframe.setVisible(true);
 		System.out.println("Setup done");
-
+		initialised = true;
+	}
+	
+	public static void recreateGameThread(){
+		if(initialised)gameframe.initGameThread();
 	}
 }

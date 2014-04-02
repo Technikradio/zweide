@@ -192,7 +192,7 @@ public class Menu extends JFrame implements ActionListener {
     }
 
     //Resources.gameThread.resume();
-    Tompong.gameframe.pong.continue();
+    GBAE.play();
 
   }
 }
