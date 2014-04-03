@@ -1,6 +1,7 @@
 package zweide.tompong;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
@@ -16,7 +17,7 @@ public class PongPanel extends JPanel implements Runnable {
 	private Ball mainBall;
 	private int frameWidth, frameHeight;
 	private Level currentLevel;
-	private Powerup currentPowerup = PowerupRegister.getNext();
+	private Powerup currentPowerup = null;
 
 	public PongPanel(int x, int y) {
 
@@ -116,12 +117,13 @@ public class PongPanel extends JPanel implements Runnable {
 								.getVertPos() + mainBall.getSize() / 2))
 						/ playerR.getBarHeight() * currentLevel.ballSpeed));
 			}
-			if (new Rectangle(mainBall.getHoriPos(), mainBall.getVertPos(),
-					mainBall.getSize(), mainBall.getSize())
-					.intersects(currentPowerup)) {
+			if (this.currentPowerup != null
+					&& new Rectangle(mainBall.getHoriPos(),
+							mainBall.getVertPos(), mainBall.getSize(),
+							mainBall.getSize()).intersects(currentPowerup)) {
+				// Powerup
 				currentPowerup.onEvent();
 				currentPowerup = null;
-				currentPowerup = PowerupRegister.getNext();
 			}
 			if (mainBall.getVertPos() + mainBall.getSize() > mainBall
 					.getUpperPosBounds()) {
@@ -144,6 +146,11 @@ public class PongPanel extends JPanel implements Runnable {
 				// Ball right goal
 				newBallParameter();
 				playerL.setScore(playerL.getScore() + 1);
+			}
+
+			// Powerup
+			if (this.currentPowerup == null && Math.random() < 0.01) {
+				this.currentPowerup = PowerupRegister.getNext();
 			}
 
 			// Repaint
@@ -179,6 +186,7 @@ public class PongPanel extends JPanel implements Runnable {
 		// General
 		super.paintComponent(g);
 		g.setColor(Color.white);
+		g.setFont(new Font("Block", Font.BOLD, 32));
 
 		// Player
 		g.fillRect(27, playerL.getPos(), 10, playerL.getBarHeight());
@@ -198,7 +206,9 @@ public class PongPanel extends JPanel implements Runnable {
 		g.drawString(Integer.toString(playerL.getScore()), 300, 100);
 		g.drawString(Integer.toString(playerR.getScore()), 500, 100);
 
-		currentPowerup.Draw(g);
+		// Powerup
+		if (this.currentPowerup != null)
+			currentPowerup.draw(g);
 
 	}
 

@@ -14,24 +14,25 @@ public class PowerupRegister {
 	static int count = -1;
 
 	static {
-		powerups = new ArrayList<Powerup>();
-		java.lang.Class<java.lang.Object>[] classes = null/*
-														 * = GetAllClasses()
-														 * oder so?
-														 */; // Get all classes
-																// of
-																// zweide.tompong
+		/*powerups = new ArrayList<Powerup>();
+		java.lang.Class<java.lang.Object>[] classes = null;
+				
 		powerups.add(new zweide.tompong.powerups.LSD(Resources.sizeX / 2,
 				Resources.sizeY / 2));
 		count++;
-		/*
-		 * for(int i = 0; i <= classes.length; i++){
-		 * if(classes[i].getClass().isAnnotationPresent(RegisterPowerup.class)){
-		 * try { powerups.add((Powerup) classes[i].newInstance()); } catch
-		 * (InstantiationException e) { // TODO Auto-generated catch block
-		 * e.printStackTrace(); } catch (IllegalAccessException e) { // TODO
-		 * Auto-generated catch block e.printStackTrace(); } } }
-		 */
+
+		for (int i = 0; i <= classes.length; i++) {
+			if (classes[i].isAnnotationPresent(RegisterPowerup.class)) {
+				try {
+					powerups.add((Powerup) classes[i].newInstance());
+				} catch (InstantiationException e) {
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					
+				}
+			}
+
+		}*/
 	}
 
 	public static Powerup getNext() {
@@ -39,9 +40,10 @@ public class PowerupRegister {
 			return (Powerup) powerups.toArray()[(int) Math
 					.round((Math.random() * count))];
 		else
-			return new zweide.tompong.powerups.LSD(Resources.sizeX / 2,
-					Resources.sizeY / 2); // This should return an random item
-											// of powerups right?
+			return new zweide.tompong.powerups.LSD(
+					(int) ((Resources.sizeX - 32) * Math.random()),
+					(int) ((Resources.sizeX - 32) * Math.random())); // This should return an random item
+		// of powerups right?
 	}
 
 	@Documented

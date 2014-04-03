@@ -1,6 +1,6 @@
 /**
  * @author leondietrich
- * This holds the powerups
+ * This holds the power(ups)
  *
  */
 

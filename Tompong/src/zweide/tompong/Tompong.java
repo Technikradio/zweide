@@ -5,7 +5,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 public class Tompong {
 
-	static GameFrame gameframe;
+	public static GameFrame gameframe;
 	static Menu menu;
 	static boolean initialised = false;
 
