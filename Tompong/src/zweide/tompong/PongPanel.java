@@ -169,6 +169,8 @@ public class PongPanel extends JPanel implements Runnable {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			
+			setBackground(Resources.getPanelBackgroundColor());
 		}
 	}
 

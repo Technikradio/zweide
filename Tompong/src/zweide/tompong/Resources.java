@@ -1,5 +1,6 @@
 package zweide.tompong;
 
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -20,6 +21,8 @@ public class Resources {
 	public static Thread gameThread;
 	public static byte levelIndex = defaultLevelIndex;
 	public static Level costumLevel;
+	
+	private static Color backgroundColor = java.awt.Color.black;
 
 	@SuppressWarnings("unused") //Use is commented
 	private static String getSettingValue(String v, String d) {
@@ -118,5 +121,19 @@ public class Resources {
 		} else {
 			return levels[(int) levelIndex];
 		}
+	}
+
+	/**
+	 * @return the backgroundColor of the pongPanel to get
+	 */
+	public static Color getPanelBackgroundColor() {
+		return backgroundColor;
+	}
+
+	/**
+	 * @param backgroundColor the backgroundColor of pongPanel to set
+	 */
+	public static void setPanelBackgroundColor(Color backgroundColor) {
+		Resources.backgroundColor = backgroundColor;
 	}
 }
