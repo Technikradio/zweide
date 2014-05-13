@@ -7,7 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.util.ArrayList;
 
-@SuppressWarnings("unused")
+//@SuppressWarnings({"unused","unnecessary"})
 public class PowerupRegister {
 
 	static ArrayList<Powerup> powerups;

@@ -33,7 +33,6 @@ public class Tompong {
 		try {
 			Thread.sleep(100L); //JRE is here before init thread loaded static block from Resources.java ==> nullreferenceexeption
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		gameframe = new GameFrame();
