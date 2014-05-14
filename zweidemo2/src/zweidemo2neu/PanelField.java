@@ -1,4 +1,4 @@
-package zweidemo2;
+package zweidemo2neu;
 
 import java.awt.Image;
 

@@ -1,4 +1,4 @@
-package zweidemo2;
+package zweidemo2neu;
 
 import java.awt.Image;
 import java.io.File;
@@ -59,12 +59,9 @@ public class Player {
 		fieldx += movelength * x;
 		fieldy += movelength * y;
 
+		long start;
 		while (fieldx * 32 != posx || fieldy * 32 != posy) {
-			try {
-				Thread.sleep(8);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			start=System.currentTimeMillis();
 			posx += x;
 			posy += y;
 			board.paintImmediately(posx, posy, 32, 32);
@@ -74,6 +71,12 @@ public class Player {
 					board.nextLevel();
 					return true;
 				}
+			}
+
+			try {
+				Thread.sleep( 8-(System.currentTimeMillis()-start)>0 ? 8-(System.currentTimeMillis()-start) : 0);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 		}
 		board.currentPlayerTexture = player_steady;

@@ -1,4 +1,4 @@
-package zweidemo2;
+package zweidemo2neu;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -36,15 +36,14 @@ public class GameWindow extends JFrame {
 			}
 		}
 		GameWindow frame = new GameWindow(
-				"Use WASD or the directional keys to move!", x, y);
+				"Schlittschuhnoob", x, y);
 		GamePanel board = new GamePanel(x, y);
 		Player player = new Player(x / 2, y / 2);
 		board.currentPlayerTexture = player.player_steady;
 		board.makeRandom();
 		board.addPlayer(player);
 		board.makeTargets();
-		frame.add(board);
-		board.repaint();
+		frame.add(board);		board.repaint();
 		addPlayerSlideListener(frame, board, player);
 		frame.setVisible(true);
 	}
